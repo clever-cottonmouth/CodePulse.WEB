@@ -12,6 +12,7 @@
           <th scope="col">Id</th>
           <th scope="col">Name</th>
           <th scope="col">Url Handle</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -19,6 +20,11 @@
           <th scope="row">{{category.id}}</th>
           <td>{{category.name}}</td>
           <td>{{category.urlHandle}}</td>
+          <td>
+            <a [routerLink]="['/admin/categories', category.id]" class="btn btn-info">
+            Edit
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
