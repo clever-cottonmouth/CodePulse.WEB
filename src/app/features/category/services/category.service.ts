@@ -18,11 +18,24 @@ export class CategoryService {
     return this.http.post<void>(`${environment.apiBaseUrl}/api/categories?addAuth=true`, model)
   }
 
-  getAllCategories(query?: string, sortBy?: string, sortDirection?: string):Observable<Category[]>{
+  getAllCategories(query?: string,
+     sortBy?: string,
+      sortDirection?: string,
+      pageNumber?: number,
+      pageSize?: number
+    ):Observable<Category[]>{
 
     let params = new HttpParams();
     if(query){
       params = params.set('query', query);
+    }
+
+    if(pageNumber){
+      params = params.set('pageNumber', pageNumber);
+    }
+
+    if(pageSize){
+      params = params.set('pageSize', pageSize);
     }
 
     if(sortBy){
@@ -39,6 +52,10 @@ export class CategoryService {
 
   getCategoryById(id:string):Observable<Category>{
     return this.http.get<Category>(`${environment.apiBaseUrl}/api/categories/${id}`)
+  }
+
+  getCategoryCount():Observable<number>{
+    return this.http.get<number>(`${environment.apiBaseUrl}/api/categories/count`)
   }
 
   updateCategory(id:string, updateCategoryRequest: UpdateCategoryRequest):Observable<Category>{
