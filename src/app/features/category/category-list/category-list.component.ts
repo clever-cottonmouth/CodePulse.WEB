@@ -32,4 +32,13 @@ export class CategoryListComponent implements OnInit {
     });
   }
 
+  sort(sortBy:string, sortDirection: string){
+    this.categoryService.getAllCategories(undefined, sortBy, sortDirection).subscribe({
+      next: (data) => {
+        this.categories= data;
+      }
+
+    })
+  }
+
 }
